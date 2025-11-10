@@ -24,7 +24,7 @@ class Program
 
         if (breaked == true)
         {
-            if (CountUp == 50)
+            if (CountUp == 50 && CountDown == 50)
             {
                 Console.WriteLine("Both are equal");
             }
