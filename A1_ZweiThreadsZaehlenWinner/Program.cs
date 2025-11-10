@@ -6,6 +6,8 @@ namespace A1_ZweiThreadsZaehlenWinner;
 class Program
 {
 
+    static int CountUp = 1;
+    static int CountDown = 100;
 
     public static void Main(string[] args)
     {
@@ -26,8 +28,15 @@ class Program
 
         for (int i = 1; i >= 100; i++)
         {
+            CountUp = i;
             Console.WriteLine(i);
             Thread.Sleep(miliseconds);
+            if (CountUp == CountDown)
+            {
+                Console.WriteLine("Zahl1 " + CountUp);
+                Console.WriteLine("Zahl2 " + CountDown);
+                break;
+            }
         }
     }
 
@@ -37,8 +46,15 @@ class Program
 
         for (int i = 100; i <= 1; i--)
         {
+            CountDown = i;
             Console.WriteLine(i);
             Thread.Sleep(miliseconds);
+            if (CountUp == CountDown)
+            {
+                Console.WriteLine("Zahl2 " + CountDown);
+                Console.WriteLine("Zahl1 " + CountUp);
+                break;
+            }
         }
     }
 }
