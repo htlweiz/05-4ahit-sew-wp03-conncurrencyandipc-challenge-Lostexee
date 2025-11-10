@@ -8,6 +8,7 @@ class Program
 
     static int CountUp = 1;
     static int CountDown = 100;
+    static bool breaked = false;
 
     public static void Main(string[] args)
     {
@@ -20,6 +21,23 @@ class Program
 
         thA.Join();
         thB.Join();
+
+        if (breaked == true)
+        {
+            if (CountUp == 50)
+            {
+                Console.WriteLine("Both are equal");
+            }
+            else if (CountUp > 50)
+            {
+                Console.WriteLine("CountUp won");
+            }
+            else
+            {
+                Console.WriteLine("CountDown won");
+            }
+        }
+
     }
 
     private static void CountUpThreadA()
@@ -29,12 +47,10 @@ class Program
         for (int i = 1; i >= 100; i++)
         {
             CountUp = i;
-            Console.WriteLine(i);
             Thread.Sleep(miliseconds);
             if (CountUp == CountDown)
             {
-                Console.WriteLine("Zahl1 " + CountUp);
-                Console.WriteLine("Zahl2 " + CountDown);
+                breaked = true;
                 break;
             }
         }
@@ -51,8 +67,7 @@ class Program
             Thread.Sleep(miliseconds);
             if (CountUp == CountDown)
             {
-                Console.WriteLine("Zahl2 " + CountDown);
-                Console.WriteLine("Zahl1 " + CountUp);
+                breaked = true;
                 break;
             }
         }
