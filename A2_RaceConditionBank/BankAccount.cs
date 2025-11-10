@@ -2,27 +2,34 @@ using System;
 using System.Threading;
 
 namespace A2_RaceConditionBank;
+
 public class BankAccount
 {
     private int balance;
-   
-    
-    public BankAccount(int initial) 
-    { 
-        balance = initial; 
+    object log_ = new object();
+
+    public BankAccount(int initial)
+    {
+        balance = initial;
     }
-    
-    public void Deposit(int amount) 
-    { 
-       
+
+    public void Deposit(int amount)
+    {
+        lock (log_)
+        {
+            balance += amount;
+        }
     }
-    
-    public void Withdraw(int amount) 
-    { 
-        
+
+    public void Withdraw(int amount)
+    {
+        lock (log_)
+        {
+            balance -= amount;
+        }
     }
-    
-    public int GetBalance() 
+
+    public int GetBalance()
     {
         return balance;
     }
